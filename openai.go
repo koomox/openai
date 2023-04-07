@@ -63,6 +63,10 @@ func (c *Client) Request(question string, dialer *http.Client) ([]byte, error) {
 	return io.ReadAll(res.Body)
 }
 
+func (c *Client) Test(dialer *http.Client) ([]byte, error) {
+	return c.Request("Say this is a test!", dialer)
+}
+
 func NewProxyDialer(network, addr string) *http.Client {
 	dialer, _ := proxy.SOCKS5(network, addr, nil, proxy.Direct)
 	transport := &http.Transport{
