@@ -56,8 +56,8 @@ func (c *Client) Request(question string, dialer *http.Client) ([]byte, error) {
 	}
 	defer res.Body.Close()
 
-	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("request %s, status %s", s.resource, resp.Status)
+	if res.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("request %s, status %s", "https://api.openai.com/v1/chat/completions", res.Status)
 	}
 
 	return io.ReadAll(res.Body)
